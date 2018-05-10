@@ -1,3 +1,4 @@
 -Need logic to limit the type of username
 -Check if username/email exists at sign up
 -password specs?
+-more useful error message for failed sign up
