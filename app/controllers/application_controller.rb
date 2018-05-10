@@ -35,7 +35,7 @@ class ApplicationController < Sinatra::Base
     else
       @user = User.find_by_username(params[:username])
       if @user && @user.authenticate(params[:password])
-        session[:id] = @user.id
+        session[:user_id] = @user.id
         flash[:message] = "Welcome,"
         redirect to "/tweets"
       else
