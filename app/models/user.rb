@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
 
   def self.find_by_slug(slug)
     found = nil
-    self.all.each do |artist|
-      if artist.slug == slug
-        found = artist
+    self.all.each do |user|
+      if user.slug == slug
+        found = user
       end
     end
     found
