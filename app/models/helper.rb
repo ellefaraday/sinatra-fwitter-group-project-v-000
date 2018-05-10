@@ -4,6 +4,6 @@ class Helper
     end
 
     def self.is_logged_in?(session)
-      session[:user_id] != nil
+      session[:id] != nil
     end
 end
