@@ -22,16 +22,24 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
+      @user = User.find_by_username(params[:username])
+
+      if @user && User.authenticate(params[:password])
+        success
+      else
+        failure
+      end
      redirect to '/users/:username'
   end
 
   post '/sign-up' do
       binding.pry
       @user = User.new(params)
-      if user.save 
+      if user.save
         redirect '/users/:username'
       else
-        redirect "/failure"
+        flash[:message] = "Sign up failed please try again."
+        redirect "/sign-up"
       end
   end
 end
