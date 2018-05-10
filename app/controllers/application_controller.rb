@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
       if @user && User.authenticate(params[:password])
         session[:id] = @user.id
-        success
+        flash[:message] = "Logged in."
         redirect to '/users/:username'
       else
         failure
