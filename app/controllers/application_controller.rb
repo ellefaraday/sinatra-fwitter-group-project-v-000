@@ -55,6 +55,11 @@ class ApplicationController < Sinatra::Base
       erb :'users/show'
   end
 
+  get '/tweets/:id' do
+    @tweet = Tweet.find_by_id(params[:id])
+    erb :'tweets/show'
+  end
+
   post '/login' do
     @user = User.find_by_username(params[:username])
     if @user && @user.authenticate(params[:password])
