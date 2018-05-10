@@ -62,6 +62,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get 'users/:slug' do
+    
+  end
+
   post '/signup' do
       @user = User.new(params)
       if @user.username != "" && @user.email != "" && @user.save
