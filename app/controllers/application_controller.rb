@@ -107,6 +107,7 @@ class ApplicationController < Sinatra::Base
   post '/tweets/:id' do
     @tweet = Tweet.find_by_id(params[:id])
     @tweet.content = params[:content]
+    @tweet.save
   end
 
 end
