@@ -52,11 +52,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:slug' do
-    if Helper.is_logged_in?(session) && Helper.current_user(session).slug == params[:slug]
       erb :'users/show'
-    else
-      redirect to '/login'
-    end
   end
 
   post '/login' do
