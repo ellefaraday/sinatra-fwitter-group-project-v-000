@@ -56,8 +56,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tweets/:id' do
-    @tweet = Tweet.find_by_id(params[:id])
-    erb :'tweets/show'
+    if Helper.is_logged_in?(session)
+      @tweet = Tweet.find_by_id(params[:id])
+      erb :'tweets/show'
+    else
+      redirect to '/login'
+    end
   end
 
   post '/login' do
