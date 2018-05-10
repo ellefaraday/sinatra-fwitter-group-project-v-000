@@ -36,6 +36,7 @@ class ApplicationController < Sinatra::Base
       binding.pry
       @user = User.new(params)
       if user.save
+        session[:id] = @user.id
         redirect "/users/#{@user.username}"
       else
         flash[:message] = "Sign up failed please try again."
