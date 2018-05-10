@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
 
       if @user && @user.authenticate(params[:password])
         session[:id] = @user.id
-        flash[:message] = "Logged in."
+        flash[:message] = "Welcome,"
         redirect to "/tweets"
       else
         failure
