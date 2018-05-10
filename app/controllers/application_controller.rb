@@ -116,7 +116,18 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/tweets/:id/delete' do
-    if
+    @tweet = Tweet.find_by_id(params[:id])
+    if @tweet.user == Helper.current_user(session)
+      @tweet.delete
+      flash[:message] = "Your tweet has been deleted."
+      redirect to '/tweets'
+    elsif Helper.is_logged_in?(session)
+      flash[:message] = "You can't delete a tweet that doesn't belong to you."
+      redirect to '/tweets'
+    else
+      flash[:message] = "You need to be logged in to do that."
+      redirect to '/login'
+    end
   end
 
 end
