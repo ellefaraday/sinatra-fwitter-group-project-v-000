@@ -34,7 +34,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/sign-up' do
-      binding.pry
       @user = User.new(params)
       if @user.save
         session[:id] = @user.id
