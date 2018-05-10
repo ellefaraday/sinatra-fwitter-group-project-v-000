@@ -45,6 +45,16 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/logout' do
+    session.clear
+    flash[:message] = "You have logged out."
+    redirect to '/login'
+  end
+
+  get '/tweets/new' do
+    erb :'tweets/new'
+  end
+
   post '/login' do
     @user = User.find_by_username(params[:username])
     if @user && @user.authenticate(params[:password])
@@ -67,19 +77,8 @@ class ApplicationController < Sinatra::Base
       end
   end
 
-  get '/logout' do
-    session.clear
-    flash[:message] = "You have logged out."
-    redirect to '/login'
-  end
-
-  get '/users/:username' do
-    @user= User.find_by_id(session[:user_id])
-    erb :'users/show'
-  end
-
-  get '/tweets/new' do
-    erb :'tweets/new'
+  post 'tweets' do
+    @tweet = Tweet.create(content: params, user_id:session[:user_id])
   end
 
 end
