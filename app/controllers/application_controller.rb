@@ -78,7 +78,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/tweets' do
-    @tweet = Tweet.create(content: params[:content], user:Helper.current_user(session))
+    if params[:content] != ""
+      @tweet = Tweet.create(content: params[:content], user:Helper.current_user(session))
+    end
   end
 
 end
