@@ -3,7 +3,7 @@
 <% end %>
 <%User.all.each do |user|%>
   <%user.tweets.each do |tweet|%>
-    <%=tweet%>
+    <%=tweet.content%>
     <br></br>
   <%end%>
 <%end%>
