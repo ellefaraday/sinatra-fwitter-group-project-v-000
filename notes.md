@@ -1,0 +1,2 @@
+-Need logic to limit the type of username
+-Check if username/email exists at sign up
