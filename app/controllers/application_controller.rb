@@ -81,6 +81,7 @@ class ApplicationController < Sinatra::Base
     if params[:content] != ""
       @tweet = Tweet.create(content: params[:content], user:Helper.current_user(session))
     else
+      flash[:message] = "You cannot submit a blank tweet."
       redirect to 'tweets/new'
     end
   end
