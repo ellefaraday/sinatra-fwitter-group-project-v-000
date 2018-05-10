@@ -51,10 +51,6 @@ class ApplicationController < Sinatra::Base
     redirect to '/login'
   end
 
-  get '/tweets/new' do
-    erb :'tweets/new'
-  end
-
   post '/login' do
     @user = User.find_by_username(params[:username])
     if @user && @user.authenticate(params[:password])
