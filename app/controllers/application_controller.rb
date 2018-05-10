@@ -26,10 +26,10 @@ class ApplicationController < Sinatra::Base
 
       if @user && User.authenticate(params[:password])
         success
+        redirect to '/users/:username'
       else
         failure
       end
-     redirect to '/users/:username'
   end
 
   post '/sign-up' do
