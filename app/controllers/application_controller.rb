@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
     erb :'index'
   end
 
-  get '/sign-up' do
+  get '/signup' do
     erb :'users/new'
   end
 
@@ -43,4 +43,20 @@ class ApplicationController < Sinatra::Base
         redirect "/sign-up"
       end
   end
+
+  get '/users/logout' do
+    session.clear
+    flash[:message] = "You have logged out."
+    redirect to '/'
+  end
+
+  get '/users/:username' do
+    @user= User.find_by_id(session[:id])
+    erb :'users/show'
+  end
+
+  get '/tweets/new' do
+    erb :'tweets/new'
+  end
+
 end
