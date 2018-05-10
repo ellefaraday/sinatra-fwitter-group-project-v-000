@@ -21,6 +21,10 @@ class ApplicationController < Sinatra::Base
     erb :'login'
   end
 
+  get '/tweets' do
+    erb :'tweets/index'
+  end
+
   post '/login' do
       @user = User.find_by_username(params[:username])
 
@@ -37,7 +41,7 @@ class ApplicationController < Sinatra::Base
       @user = User.new(params)
       if @user.save
         session[:id] = @user.id
-        redirect "/users/#{@user.username}"
+        redirect "/tweets"
       else
         flash[:message] = "Sign up failed please try again."
         redirect "/signup"
