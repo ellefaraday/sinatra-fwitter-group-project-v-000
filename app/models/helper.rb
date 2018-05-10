@@ -1,7 +1,9 @@
 class Helper < ActiveRecord::Base
-  def current_user
-  end
+    def self.current_user(session)
+      User.find_by(id: session[:user_id])
+    end
 
-  def logged_in?
-  end
+    def self.is_logged_in?(session)
+      session[:user_id] != nil
+    end
 end
