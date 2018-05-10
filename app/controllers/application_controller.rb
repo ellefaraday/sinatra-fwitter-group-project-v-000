@@ -115,8 +115,8 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/tweets/delete' do
-    
+  post '/tweets/:id/delete' do
+    if
   end
 
 end
