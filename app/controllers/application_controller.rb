@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
   post '/login' do
       @user = User.find_by_username(params[:username])
 
-      if @user && User.authenticate(params[:password])
+      if @user && @user.authenticate(params[:password])
         session[:id] = @user.id
         flash[:message] = "Logged in."
         redirect to "/users/#{@user.username}"
