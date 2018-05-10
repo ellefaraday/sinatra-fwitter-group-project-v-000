@@ -115,4 +115,8 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/tweets/delete' do
+    
+  end
+
 end
