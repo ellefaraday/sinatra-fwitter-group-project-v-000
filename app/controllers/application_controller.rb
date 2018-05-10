@@ -58,7 +58,7 @@ class ApplicationController < Sinatra::Base
   get '/users/logout' do
     session.clear
     flash[:message] = "You have logged out."
-    redirect to '/'
+    redirect to '/login'
   end
 
   get '/users/:username' do
