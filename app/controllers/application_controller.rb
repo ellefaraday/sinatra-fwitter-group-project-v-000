@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
   post '/login' do
      redirect to '/users/:username'
   end
-  
+
   post '/sign-up' do
      redirect to '/users/:username'
   end
