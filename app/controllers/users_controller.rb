@@ -1,6 +1,7 @@
 require 'rack-flash'
 class UsersController < ApplicationController
   use Rack::Flash
+
   get '/users/logout' do
     session.clear
     flash[:message] = "You have logged out."
