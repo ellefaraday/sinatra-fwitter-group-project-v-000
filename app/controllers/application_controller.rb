@@ -14,7 +14,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    erb :'users/new'
+    if Helper.is_logged_in?
+      redirect to '/tweets'
+    else
+      erb :'users/new'
+    end
   end
 
   get '/login' do
