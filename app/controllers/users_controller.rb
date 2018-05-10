@@ -1,4 +1,4 @@
-
+require 'rack-flash'
 class UsersController < ApplicationController
   get '/users/logout' do
     session.clear
