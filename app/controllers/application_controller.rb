@@ -110,7 +110,9 @@ class ApplicationController < Sinatra::Base
       @tweet.content = params[:content]
       @tweet.save
     else
+      flash[:message] = "You cannot submit a blank tweet."
       redirect to "/tweets/#{params[:id]}/edit"
+    end
   end
 
 end
