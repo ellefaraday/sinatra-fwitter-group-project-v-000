@@ -104,4 +104,9 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/tweets/:id' do
+    @tweet = Tweet.find_by_id(params[:id])
+    
+  end
+
 end
