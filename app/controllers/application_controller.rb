@@ -51,6 +51,14 @@ class ApplicationController < Sinatra::Base
     redirect to '/login'
   end
 
+  get '/users/:slug' do
+    if Helper.is_logged_in?(session) && Helper.current_user.slug == params[:slug]
+      erb :'users/show'
+    else
+      redirect to '/login'
+    end
+  end
+
   post '/login' do
     @user = User.find_by_username(params[:username])
     if @user && @user.authenticate(params[:password])
@@ -59,14 +67,6 @@ class ApplicationController < Sinatra::Base
       redirect to "/tweets"
     else
       failure
-    end
-  end
-
-  get '/users/:slug' do
-    if Helper.is_logged_in?(session) && Helper.current_user.slug == params[:slug]
-      erb :'users/show'
-    else
-      redirect to '/login'
     end
   end
 
