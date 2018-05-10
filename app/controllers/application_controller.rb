@@ -26,6 +26,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/sign-up' do
+      binding.pry
      redirect to '/users/:username'
   end
 end
