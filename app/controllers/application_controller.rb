@@ -27,7 +27,11 @@ class ApplicationController < Sinatra::Base
 
   post '/sign-up' do
       binding.pry
-      @user = User.create(params)
-     redirect to '/users/:username'
+      @user = User.new(params)
+      if user.save 
+        redirect '/users/:username'
+      else
+        redirect "/failure"
+      end
   end
 end
