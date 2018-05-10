@@ -1,4 +1,4 @@
-class Helper < ActiveRecord::Base
+class Helper
     def self.current_user(session)
       User.find_by(id: session[:user_id])
     end
