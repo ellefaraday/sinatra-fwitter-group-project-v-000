@@ -33,14 +33,14 @@ class ApplicationController < Sinatra::Base
       end
   end
 
-  post '/sign-up' do
+  post '/signup' do
       @user = User.new(params)
       if @user.save
         session[:id] = @user.id
         redirect "/users/#{@user.username}"
       else
         flash[:message] = "Sign up failed please try again."
-        redirect "/sign-up"
+        redirect "/signup"
       end
   end
 
