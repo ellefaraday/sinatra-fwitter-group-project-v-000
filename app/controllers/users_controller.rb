@@ -1,6 +1,5 @@
-require './config/environment'
 
-class UsersController < Sinatra::Base
+class UsersController < ApplicationController
   get '/users/:username' do
     erb :'users/show'
   end
