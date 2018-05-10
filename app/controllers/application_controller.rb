@@ -27,6 +27,7 @@ class ApplicationController < Sinatra::Base
 
   post '/sign-up' do
       binding.pry
+      @user = User.create(params)
      redirect to '/users/:username'
   end
 end
