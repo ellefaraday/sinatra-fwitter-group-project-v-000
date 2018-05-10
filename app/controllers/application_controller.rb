@@ -30,8 +30,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
+    if Helper.is_logged_in?(session)
+      redirect to '/tweets'
+    else
       @user = User.find_by_username(params[:username])
-
       if @user && @user.authenticate(params[:password])
         session[:id] = @user.id
         flash[:message] = "Welcome,"
@@ -39,6 +41,7 @@ class ApplicationController < Sinatra::Base
       else
         failure
       end
+    end
   end
 
   post '/signup' do
