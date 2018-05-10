@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
       @user = User.new(params)
       if @user.username != "" && @user.email != "" && @user.save
-        session[:id] = @user.id
+        session[:user_id] = @user.id
         redirect "/tweets"
       else
         flash[:message] = "Sign up failed please try again."
