@@ -20,4 +20,12 @@ class ApplicationController < Sinatra::Base
   get '/login' do
     erb :'login'
   end
+
+  post '/login' do
+     redirect to '/users/:username'
+  end
+  
+  post '/sign-up' do
+     redirect to '/users/:username'
+  end
 end
