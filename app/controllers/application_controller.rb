@@ -22,7 +22,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :'login'
+    if Helper.is_logged_in?(session)
+      redirect to '/tweets'
+    else
+      erb :'login'
+    end
   end
 
   get '/tweets' do
@@ -30,17 +34,13 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    if Helper.is_logged_in?(session)
-      redirect to '/tweets'
+    @user = User.find_by_username(params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      flash[:message] = "Welcome,"
+      redirect to "/tweets"
     else
-      @user = User.find_by_username(params[:username])
-      if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
-        flash[:message] = "Welcome,"
-        redirect to "/tweets"
-      else
-        failure
-      end
+      failure
     end
   end
 
