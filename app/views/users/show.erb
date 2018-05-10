@@ -1,5 +1,8 @@
 user page
 
-<% if Helper.is_logged_in?(session) == true%>
+<%if Helper.is_logged_in?(session) == true%>
   Hi, <%=Helper.current_user(session).username%>
+<%else%>
+  Sorry, you need to be logged in to view this page.
+  <a href='/login'>Log in</a> or <a href='/sign-up'>Log in</a>
 <%end%>
